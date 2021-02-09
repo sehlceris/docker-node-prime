@@ -2,16 +2,37 @@
 
 a small application for testing docker or kubernetes deployments.
 
-## usage
+## usage (local)
 
 ```bash
 npm start
 ```
 
+## usage (docker)
+
+```bash
+docker pull sehlceris/node-prime:latest
+
+docker run \
+  --rm \
+  -e PORT=3000 \
+  -e PRIME_LIMIT=2000000 \
+  -p "3000:3000" \
+  sehlceris/node-prime:latest
+```
+
+## building
+
+```bash
+docker build -t sehlceris/node-prime:latest .
+docker login --username $USERNAME --password-stdin
+docker push sehlceris/node-prime:latest
+```
+
 ## environment variables
 
 - `PORT`: port the server should listen on, default `3000`
-- `PRIME_LIMIT`: maximum number the prime number generator will accept
+- `PRIME_LIMIT`: maximum number the prime number generator will accept, default `1000000`
 
 ## endpoints
 
