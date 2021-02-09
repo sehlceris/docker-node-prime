@@ -21,10 +21,19 @@ docker run \
   sehlceris/node-prime:latest
 ```
 
+## usage (kubernetes)
+
+Ensure you have `minikube` or `microk8s` installed.
+
+```bash
+kubectl apply -f kubernetes-deployment.yaml
+```
+
 ## building
 
 ```bash
 docker build -t sehlceris/node-prime:latest .
+# docker build -t sehlceris/node-prime:0.1.0 .
 docker login --username $USERNAME --password-stdin
 docker push sehlceris/node-prime:latest
 ```

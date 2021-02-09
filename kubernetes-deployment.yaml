@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend
+spec:
+  selector:
+    app: node-prime
+    tier: backend
+  ports:
+    - protocol: 'TCP'
+      port: 8080 # kubernetes worker node port
+      targetPort: 3000 # container port
+  type: LoadBalancer
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: node-prime
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: node-prime
+      tier: backend
+  template:
+    metadata:
+      labels:
+        app: node-prime
+        tier: backend
+    spec:
+      containers:
+        - name: second-node
+          image: sehlceris/node-prime:0.1.0
